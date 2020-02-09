@@ -1,0 +1,83 @@
+Q Given arrival and departure times of all trains that reach a railway station, the task is to find the minimum number of platforms required for the railway station so that no train waits. We are given two arrays which represent arrival and departure times of trains that stop.
+
+#include<iostream>
+using namespace std;
+int main()
+{   int n,k,j,i;
+int c=1;
+	cout<<"\n Enter the number of total trains: ";
+	cin>>n;
+	if(n==0)
+	 {cout<<"\n require 0 platforms";
+	 return 0;
+     }
+	int ar[n],depart[n];
+	cout<<"\n Enter the arrival times of array: ";
+	for(i=0;i<n;i++)
+	{
+		cin>>ar[i];
+	}
+	
+	cout<<"\n Enter the departure times of array: ";
+	for( i=0;i<n;i++)
+	{
+		cin>>depart[i];
+	}
+	for( i=1;i<n;i++)
+	{
+		k=ar[i];
+	 
+		j=i-1;
+	
+		while((ar[j]>k)&&(j>=0))
+		{
+			ar[j+1]=ar[j];
+			j=j-1;
+			
+		}
+		ar[j+1]=k;
+    }
+		for( i=1;i<n;i++)
+	{
+		k=depart[i];
+	 
+		j=i-1;
+	
+		while((depart[j]>k)&&(j>=0))
+		{
+			depart[j+1]=depart[j];
+			j=j-1;
+		
+		}
+		depart[j+1]=k;
+	}
+    int  max=1;
+    i=1;//counter for arrival time array
+    j=0;//counter for departure time array
+    while(i<n&&j<n)//we need to compare till both the array ends
+    {
+    	if(ar[i]<=depart[j])//new train arrived when one was still there
+    	{
+    		max++;
+    		i++;
+    		
+    		if(max>c)
+			  c=max;//storing maximum value 
+		}
+		else
+		{
+		max--;
+		j++;
+	    }
+		//this means, before the arrival, a train departed, leading to vacant platform
+		 
+ 
+	}
+	 
+		 cout<<"\n in need : "<<c;
+	return 0;
+}
+ 
+ 
+ 
+ 
