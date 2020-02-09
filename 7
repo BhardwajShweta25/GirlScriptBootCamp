@@ -1,0 +1,39 @@
+Write a program to do basic string compression. For a character which is consecutively repeated more than once, replace consecutive duplicate occurrences with the count of repetitions.
+ 
+
+#include<iostream>
+#include<string>
+using namespace std;
+
+int main() {
+	string input;
+	cout<<"\n Enter the string: ";
+	cin>>input;
+    int c=1;
+for(int i=0;input[i]!='\0';i++)
+{ 
+    if(input[i]==input[i+1])
+    {
+        c++;
+        input=(input.substr(0,i+1))+(char)(c+48)+(input.substr(i+2));
+        
+    }
+    if(isdigit(input[i])&&(input[i+1]==input[i-1]))
+    {
+        c++;
+        input=(input.substr(0,i))+(char)(c+48)+(input.substr(i+2));
+    }
+    if(isdigit(input[i])&&(input[i+1]!=input[i-1]))
+    {
+    c=1;
+		
+	}
+  
+        
+}
+    cout<<input;
+
+  
+
+return 0;
+}
