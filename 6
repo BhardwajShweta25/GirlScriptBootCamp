@@ -1,0 +1,23 @@
+Given a string of numbers, the task is to find the maximum value from the string, you can add a ‘+’ or ‘*’ sign between any two numbers.
+ 
+#include<iostream>
+using namespace std;
+int main()
+{
+
+	string input;
+	cin>>input;
+	int sum=input[0]-'0';
+    for(int i=1;input[i]!='\0';i++)
+    {  
+      if(input[i]<='1'||sum<2)
+      {
+      	sum+=(input[i]-'0');
+	  }
+	  else
+	   sum*=(input[i]-'0');
+      
+	}
+	cout<<sum;
+return 0;
+}
