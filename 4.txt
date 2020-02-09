@@ -1,0 +1,41 @@
+Q MS Excel columns has a pattern like A, B, C, … ,Z, AA, AB, AC,…. ,AZ, BA, BB, … ZZ, AAA, AAB ….. etc. In other words, column 1 is named as “A”, column 2 as “B”, column 27 as “AA”. Given a column number, find its corresponding Excel column name. Following are more examples.
+ 
+ 
+#include <iostream>
+using namespace std;
+ 
+int main() {
+int t;
+	int col;
+	 
+	
+	cin>>t;
+	do{
+	string xcol="";
+	cin>>col;
+ 
+	while(col>0)
+	{
+	    if(col%26==0)
+	     {
+	      xcol+='Z';
+	      col=col/26-1;// like 26 needs 1 letter whereas 27 needs 2 letters
+	     }
+	     else
+	     {
+	      xcol+=(col%26)+64;//64 is ASCII value of ‘A’
+	      col=col/26;
+	     }
+	}
+	for(int i=0;i<xcol.length()/2;i++)
+	{
+	    int temp=xcol[i];
+	    xcol[i]=xcol[xcol.length()-i-1];
+	    xcol[xcol.length()-i-1]=temp;
+	}
+	cout<<xcol<<endl;
+	
+t--;
+	}while(t>0);
+	return 0;
+}
